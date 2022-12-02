@@ -1,0 +1,14 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: jarayoungServer
+  main:
+    allow-circular-references: true
+  datasource:
+    url: rdsEndpoint
+    username: rdsUsername
+    password: rdsPwd
+    platform: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
