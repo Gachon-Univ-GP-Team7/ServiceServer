@@ -7,8 +7,8 @@ spring:
   main:
     allow-circular-references: true
   datasource:
-    url: rdsEndpoint
-    username: rdsUsername
-    password: rdsPwd
+    url: jdbc:mysql://database-1.cekg2t7qwqmr.ap-northeast-2.rds.amazonaws.com/Jarayoung
+    username: admin
+    password: q3143118
     platform: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
