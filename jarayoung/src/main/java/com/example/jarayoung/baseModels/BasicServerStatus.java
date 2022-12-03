@@ -14,7 +14,24 @@ public enum BasicServerStatus {
     /**
      * 200 : 성공
      * */
-    SUCCESS(true, 200, "Request Success");
+    SUCCESS(false, 200, "Request Success"),
+
+    /**
+     * 1000 : 데이터베이스 에러
+     * */
+    DATABASE_ERROR(false, 1000, "Database Error");
+
+    /**
+     * 2000 ~ 2999 : Auth 디렉토리에서 발생하는 Error
+     * */
+
+    /**
+     * 3000 ~ 3999 : User 디렉토리에서 발생하는 Error
+     * */
+
+    /**
+     * 4000 ~ 4999 : Test 디렉토리에서 발생하는 Error
+     * */
 
     private final boolean isSuccess;
     private final int returnCode;
