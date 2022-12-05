@@ -14,7 +14,7 @@ public enum BasicServerStatus {
     /**
      * 200 : 성공
      * */
-    SUCCESS(false, 200, "Request Success"),
+    SUCCESS(true, 200, "Request Success"),
 
     /**
      * 1000 : 데이터베이스 에러
