@@ -19,12 +19,12 @@ public enum BasicServerStatus {
     /**
      * 1000 : 데이터베이스 에러
      * */
-    DATABASE_ERROR(false, 1000, "Database Error");
+    DATABASE_ERROR(false, 1000, "Database Error"),
 
     /**
      * 2000 ~ 2999 : Auth 디렉토리에서 발생하는 Error
      * */
-
+    NOT_A_EMAIL(false, 2000, "이메일 형식을 확인해주세요");
     /**
      * 3000 ~ 3999 : User 디렉토리에서 발생하는 Error
      * */
