@@ -53,7 +53,7 @@ public class AuthController {
     public BaseResponse<PostLoginRes> userLogin(@RequestBody PostLoginReq postLoginReq){
 
         try{
-            if(!RegxChecker.isValidEmail(PostLoginReq.getEmail())){
+            if(!RegxChecker.isValidEmail(postLoginReq.getEmail())){
                 throw new BaseException(BasicServerStatus.NOT_A_EMAIL);
             }
 
