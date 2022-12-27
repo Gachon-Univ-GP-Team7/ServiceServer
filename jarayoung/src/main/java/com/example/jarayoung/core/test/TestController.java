@@ -29,7 +29,7 @@ public class TestController {
 
 
     /**
-     * 테스트 기록 리스트 조회 API
+     * 테스트 기록 리스트 조회 API (마이페이지리스트 이전검사 모아보기)
      * */
     @GetMapping("testList/{userIdx}")
     @ResponseBody
@@ -43,7 +43,7 @@ public class TestController {
     }
 
     /**
-     * 테스트 기록 점수 그래프 조회 API
+     * 테스트 기록 점수 그래프 조회 API (마이페이지 그래프)
      * */
     @GetMapping("testGraph/{userIdx}")
     @ResponseBody
