@@ -3,8 +3,7 @@ package com.example.jarayoung.core.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user/")
@@ -23,5 +22,7 @@ public class UserController {
         this.userProvider = userProvider;
     }
 
-
+    @GetMapping("info/{userIdx}")
+    @RequestBody
+    public getUserInfo(@PathVariable("userIdx") int userIdx)
 }
