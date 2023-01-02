@@ -1,9 +1,6 @@
 package com.example.jarayoung.core.auth;
 
-import com.example.jarayoung.core.auth.model.PostApplyReq;
-import com.example.jarayoung.core.auth.model.PostApplyRes;
-import com.example.jarayoung.core.auth.model.PostLoginReq;
-import com.example.jarayoung.core.auth.model.PostLoginRes;
+import com.example.jarayoung.core.auth.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -48,5 +45,11 @@ public class AuthDao {
 
         return new PostLoginRes(result != -1, result);
 
+    }
+
+    public PostEmailRes checkEmailDuplication(String email) {
+        String queryString = "select count(*) from User where email = ?;";
+
+        return new PostEmailRes( this.jdbcTemplate.queryForObject(queryString, int.class, email) > 0 );
     }
 }

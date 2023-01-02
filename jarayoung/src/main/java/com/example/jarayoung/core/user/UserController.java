@@ -1,5 +1,8 @@
 package com.example.jarayoung.core.user;
 
+import com.example.jarayoung.baseModels.BaseException;
+import com.example.jarayoung.baseModels.BaseResponse;
+import com.example.jarayoung.core.user.model.GetUserRes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,13 @@ public class UserController {
     }
 
     @GetMapping("info/{userIdx}")
-    @RequestBody
-    public getUserInfo(@PathVariable("userIdx") int userIdx)
+    @ResponseBody
+    public BaseResponse<GetUserRes> getUserInfo(@PathVariable("userIdx") int userIdx) {
+        try{
+
+            return new BaseResponse<>(userProvider.getUserInfo(userIdx));
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
 }
