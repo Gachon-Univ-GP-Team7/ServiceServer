@@ -25,6 +25,10 @@ public class UserController {
         this.userProvider = userProvider;
     }
 
+    /**
+     * 메인페이지 뷰 API
+     * localhost:8000/api/user/info/{userIdx}
+     * */
     @GetMapping("info/{userIdx}")
     @ResponseBody
     public BaseResponse<GetUserRes> getUserInfo(@PathVariable("userIdx") int userIdx) {
