@@ -34,9 +34,13 @@ public class AuthDao {
 
     public PostLoginRes userLogin(PostLoginReq postLoginReq) {
 
-        String queryString = "select ifnull(userIdx, -1) from User where email = ? and userPassword = ?;";
+        String queryString =
+                "select if(exists(select userIdx from User where email = ? and userPassword = ?), " +
+                        "(select userIdx from User where email = ? and userPassword = ?), -1) as userIdx;";
 
         Object[] queryParams = new Object[]{
+                postLoginReq.getEmail(),
+                postLoginReq.getPassword(),
                 postLoginReq.getEmail(),
                 postLoginReq.getPassword()
         };
