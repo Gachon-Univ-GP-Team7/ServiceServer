@@ -22,7 +22,7 @@ public class UserDao {
                         rs.getInt("userIdx"),
                         rs.getString("userName"),
                         rs.getString("email"),
-                        rs.getString("babName"),
+                        rs.getString("babyName"),
                         rs.getString("babyBirthday")
                 ), userIdx);
     }
