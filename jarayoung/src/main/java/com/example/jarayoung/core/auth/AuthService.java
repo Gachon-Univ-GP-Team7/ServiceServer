@@ -31,7 +31,10 @@ public class AuthService {
     public PostLoginRes userLogin(PostLoginReq postLoginReq) throws BaseException {
 
         try{
-            return authDao.userLogin(postLoginReq);
+            PostLoginRes postLoginRes = authDao.userLogin(postLoginReq);
+
+            logger.error(postLoginRes.toString());
+            return postLoginRes;
         }catch (Exception exception){
             throw new BaseException(BasicServerStatus.DATABASE_ERROR);
         }

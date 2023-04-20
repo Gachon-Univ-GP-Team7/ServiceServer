@@ -24,6 +24,7 @@ public class UserProvider {
         try{
             return userDao.getUserInfo(userIdx);
         } catch (Exception exception) {
+            logger.error(exception.getMessage());
             throw new BaseException(BasicServerStatus.DATABASE_ERROR);
         }
     }
