@@ -2,10 +2,7 @@ package com.example.jarayoung.core.test;
 
 import com.example.jarayoung.baseModels.BaseException;
 import com.example.jarayoung.baseModels.BasicServerStatus;
-import com.example.jarayoung.core.test.model.GetTestGraphRes;
-import com.example.jarayoung.core.test.model.GetTestListRes;
-import com.example.jarayoung.core.test.model.GetTestProgressView;
-import com.example.jarayoung.core.test.model.GetTestScoreRes;
+import com.example.jarayoung.core.test.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +82,14 @@ public class TestProvider {
             throw new BaseException(BasicServerStatus.DATABASE_ERROR);
         }
 
+    }
+
+    public PostTestRes postTest(int userIdx, int testMode) throws BaseException{
+        try{
+            return testDao.postTest(userIdx, testMode);
+        }catch (Exception exception){
+            logger.error(exception.getMessage());
+            throw new BaseException(BasicServerStatus.DATABASE_ERROR);
+        }
     }
 }

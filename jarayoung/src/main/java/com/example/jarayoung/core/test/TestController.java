@@ -2,10 +2,7 @@ package com.example.jarayoung.core.test;
 
 import com.example.jarayoung.baseModels.BaseException;
 import com.example.jarayoung.baseModels.BaseResponse;
-import com.example.jarayoung.core.test.model.GetTestGraphRes;
-import com.example.jarayoung.core.test.model.GetTestListRes;
-import com.example.jarayoung.core.test.model.GetTestProgressView;
-import com.example.jarayoung.core.test.model.GetTestScoreRes;
+import com.example.jarayoung.core.test.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,5 +97,12 @@ public class TestController {
     /**
      * 테스트 진행 API -> 서비스에서 ML API에 접근해 데이터 받아야 함 (보류)
      * */
-
+    @PostMapping("")
+    public BaseResponse<PostTestRes> postTest(@RequestParam int userIdx, int testMode){
+        try{
+            return new BaseResponse<>(testProvider.postTest(userIdx, testMode));
+        }catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 }

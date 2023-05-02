@@ -6,6 +6,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Repository
@@ -136,4 +139,45 @@ public class TestDao {
     }
 
 
+    public PostTestRes postTest(int userIdx, int testMode) {
+        // testMode 0이면 음성 1이면 영상
+        String voiceInsertQuery = "insert into VoiceTest (userIdx, testDate, overallScore) values (?, ?, ?)";
+        String videoInsertQuery = "insert into VideoTest (userIdx, testDate, overallScore) values (?, ?, ?)";
+        String getInsertedIdxQuery = "select last_insert_id() as testIdx";
+
+        // 현재 날짜 구하기
+        LocalDateTime now = LocalDateTime.now();
+
+        // 포맷 정의
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        // 포맷 적용
+        String formatedNow = now.format(formatter);
+        int age = (int)(Math.random() * 10000) % 10;
+
+        if(testMode == 0){
+            Object[] queryParams = new Object[]{
+                    userIdx,
+                    formatedNow,
+                    (float)age
+
+            };
+
+            this.jdbcTemplate.update(voiceInsertQuery, queryParams);
+        }
+        else{
+            Object[] queryParams = new Object[]{
+                    userIdx,
+                    formatedNow,
+                    (float)age
+
+            };
+
+            this.jdbcTemplate.update(videoInsertQuery, queryParams);
+        }
+
+        int idx = this.jdbcTemplate.queryForObject(getInsertedIdxQuery, int.class);
+
+        return new PostTestRes(idx, formatedNow, age, 1.0F);
+    }
 }
