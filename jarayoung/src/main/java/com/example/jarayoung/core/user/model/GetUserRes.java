@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GetUserRes {
     private int userIdx;
+    private String userName;
     private String babyName;
     private String babyBirthday;
     private String latestTestDay;

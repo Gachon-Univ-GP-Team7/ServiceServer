@@ -18,7 +18,7 @@ public class UserDao {
     public void getDatasource(DataSource dataSource) { this.jdbcTemplate = new JdbcTemplate(dataSource); }
 
     public GetUserRes getUserInfo(int userIdx) {
-        String queryString = "select userIdx, userName, email, babyName, babyBirthday from User where userIdx = ?;";
+        String queryString = "select userIdx, userName, babyName, babyBirthday from User where userIdx = ?;";
         String getVoiceDateQuery = "select ifnull(min(testDate), 'NULL') as testDate from VoiceTest where userIdx = ? order by voiceTestIdx desc limit 1;";
         String getVideoDateQuery = "select ifnull(min(testDate), 'NULL') as testDate from VideoTest where userIdx = ? order by videoTestIdx desc limit 1;";
 
@@ -63,6 +63,7 @@ public class UserDao {
         return this.jdbcTemplate.queryForObject(queryString, (rs, rowNum) ->
                 new GetUserRes(
                         rs.getInt("userIdx"),
+                        rs.getString("userName"),
                         rs.getString("babyName"),
                         rs.getString("babyBirthday"),
                         finalDate,
